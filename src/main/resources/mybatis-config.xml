@@ -9,15 +9,12 @@
                 <!-- Specify the MySQL driver class name -->
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <!-- Replace with your MySQL database connection URL, username, and password -->
-                <property name="url" value="jdbc:mysql://localhost:3306/your-database-name"/>
-                <property name="username" value="your-username"/>
-                <property name="password" value="your-password"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/univcoursemgmt"/>
+                <property name="username" value="root"/>
+                <property name="password" value="password"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <!-- Add the mapper XML file(s) here -->
-        <mapper resource="com/solvd/university/mapper/StudentMapper.xml"/>
-        <!-- Add other mapper files as needed -->
     </mappers>
 </configuration>
