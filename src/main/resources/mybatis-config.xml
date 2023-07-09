@@ -16,5 +16,8 @@
         </environment>
     </environments>
     <mappers>
+        <!-- Add the package name where your mapper interfaces are located -->
+        <package name="org.example.student.mapper"/>
+        <!-- Add other package names for additional mapper interfaces if needed -->
     </mappers>
 </configuration>

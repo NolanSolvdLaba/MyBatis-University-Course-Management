@@ -25,5 +25,4 @@ public class StudentService {
     public void deleteStudent(int studentId) {
         studentMapper.deleteStudent(studentId);
     }
-
 }

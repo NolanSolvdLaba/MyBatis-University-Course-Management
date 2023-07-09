@@ -1,7 +1,7 @@
 package org.example;
 
+import org.example.student.mapper.StudentMapper;
 import org.example.student.model.Student;
-import org.example.student.service.StudentService;
 import org.example.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -9,20 +9,17 @@ public class Main {
     public static void main(String[] args) {
         // Create a new student
         Student student = new Student();
-        student.setStudentName("John Doe");
-        student.setAdmissionYear(2023);
-        student.setDepartmentId(1);
-        student.setDepartmentName("Computer Science");
+        student.setStudentId(1017);
 
         // Open a MyBatis session
         SqlSession sqlSession = MyBatisUtil.openSession();
 
         try {
-            // Get the StudentService instance
-            StudentService studentService = sqlSession.getMapper(StudentService.class);
+            // Get the StudentMapper instance
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 
             // Insert the student
-            studentService.insertStudent(student);
+            studentMapper.deleteStudent(student.getStudentId());
 
             // Commit the transaction
             sqlSession.commit();
