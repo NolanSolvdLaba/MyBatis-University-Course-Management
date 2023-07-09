@@ -1,30 +1,28 @@
 package org.example;
 
+import org.example.departmentstudent.mapper.DepartmentStudentMapper;
 import org.example.departmentstudent.model.DepartmentStudent;
 import org.example.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Create a new department
-        DepartmentStudent departmentStudent = new DepartmentStudent();
-        departmentStudent.getDepartmentStudentsByDepartmentId(1);
-
         // Open a MyBatis session
         SqlSession sqlSession = MyBatisUtil.openSession();
 
         try {
-            // Get the DepartmentService instance
-            DepartmentMapper departmentMapper = sqlSession.getMapper(DepartmentMapper.class);
+            DepartmentStudentMapper departmentStudentMapper = sqlSession.getMapper(DepartmentStudentMapper.class);
 
-            // Insert the department
-            departmentMapper.insertDepartment(department);
+// Retrieve the department students
+            List<DepartmentStudent> departmentStudents = departmentStudentMapper.getDepartmentStudentsByDepartmentId(2);
 
-            // Commit the transaction
-            sqlSession.commit();
+// Print the department students
+            for (DepartmentStudent departmentStudent : departmentStudents) {
+                System.out.println(departmentStudent);
+            }
 
-            // Display success message
-            System.out.println("Department inserted successfully!");
         } catch (Exception e) {
             // Handle any exceptions
             System.out.println("Failed to insert department: " + e.getMessage());

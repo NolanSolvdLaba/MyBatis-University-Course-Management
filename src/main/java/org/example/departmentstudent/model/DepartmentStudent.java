@@ -4,8 +4,8 @@ public class    DepartmentStudent {
     private int departmentId;
     private int studentId;
 
-    public DepartmentStudent() {
-    }
+//    public DepartmentStudent() {
+//    }
 
     public DepartmentStudent(int departmentId, int studentId) {
         this.departmentId = departmentId;
@@ -26,5 +26,13 @@ public class    DepartmentStudent {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+
+    @Override
+    public String toString() {
+        return "DepartmentStudent{" +
+                "departmentId=" + departmentId +
+                ", studentId=" + studentId +
+                '}';
     }
 }
