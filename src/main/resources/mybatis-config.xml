@@ -21,6 +21,7 @@
         <package name="org.example.department.mapper"/>
         <package name="org.example.departmentstudent.mapper"/>
         <package name="org.example.instructor.mapper"/>
+        <package name="org.example.course.mapper"/>
         <!-- Add other package names for additional mapper interfaces if needed -->
     </mappers>
 </configuration>
