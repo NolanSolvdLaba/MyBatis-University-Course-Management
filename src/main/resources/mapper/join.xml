@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="org.example.mapper.JoinMapper">
+    <select id="performJoin" resultMap="JoinResultMap">
+        ${joinQuery}
+    </select>
+</mapper>

@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.instructor.mapper.InstructorMapper;
-import org.example.instructor.model.Instructor;
-import org.example.instructor.service.InstructorService;
+import org.example.department.model.Department;
+import org.example.course.model.Course;
+import org.example.join.model.JoinResult;
 import org.example.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -10,29 +10,27 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Create a new course
-        Instructor instructor = new Instructor("Bruce Wilshire");
-
         // Open a MyBatis session
         SqlSession sqlSession = MyBatisUtil.openSession();
 
         try {
-            // Get the Service instance
-            InstructorService instructorService = new InstructorService(sqlSession.getMapper(InstructorMapper.class));
+            // Retrieve the join results
+            List<JoinResult> joinResults = sqlSession.selectList("org.example.mapper.JoinMapper.performLeftJoin");
 
-            // Insert
-            instructorService.insertInstructor(instructor);
+            // Print the join results
+            for (JoinResult joinResult : joinResults) {
+                Department department = joinResult.getDepartment();
+                Course course = joinResult.getCourse();
 
-            // Commit the transaction
-            sqlSession.commit();
-
-            // Display success message
-            System.out.println("Course inserted successfully!");
-
+                System.out.println("Department ID: " + department.getDepartmentId());
+                System.out.println("Department Name: " + department.getDepartmentName());
+                System.out.println("Course ID: " + course.getCourseId());
+                System.out.println("Course Name: " + course.getCourseName());
+                System.out.println("--------------------");
+            }
         } catch (Exception e) {
             // Handle any exceptions
-            System.out.println("Failed to insert course: " + e.getMessage());
-            sqlSession.rollback();
+            System.out.println("Failed to perform left join: " + e.getMessage());
         } finally {
             // Close the MyBatis session
             sqlSession.close();
